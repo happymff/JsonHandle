@@ -14,17 +14,24 @@ public class FileHandle {
 
         File[] files1 = dir1.listFiles();
         File[] files2 = dir2.listFiles();
-        File[] files3 =null;
+        File[] files3 = new File[files1.length+files2.length];
 
-        for(int i =0;i<files1.length+files2.length;i++){
-
+        for(int i =0;i<files1.length;i++){
+           files3[i]=files1[i];
         }
+        for (int j= 0;j<files2.length; j++){
+            files3[j+files1.length]= files2[j];
+        }
+        for (int k=0; k<files3.length;k++){
+            System.out.println(files3[k]);
+        }
+
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~");
-        Arrays.sort(files1, new CompratorBySize());
+        Arrays.sort(files3, new CompratorBySize());
         System.out.println("sort by size: ");
-        for (int i = 0; i < files1.length; i++) {
-            System.out.print(files1[i].getName() + " ");
-            System.out.println(files1[i].length());
+        for (int i = 0; i < files3.length; i++) {
+            System.out.print(files3[i].getName() + " ");
+            System.out.println(files3[i].length());
             System.out.println();
         }
 
